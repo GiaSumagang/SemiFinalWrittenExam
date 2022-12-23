@@ -33,6 +33,11 @@ class AddTodoState extends State{
                 controller: titleController,
                 decoration: const InputDecoration(
                   hintText: 'Title',
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 3, color: Colors.black
+                      )
+                  ),
                 ),
               ),
 
@@ -41,20 +46,34 @@ class AddTodoState extends State{
                 controller: contentController,
                 decoration: const InputDecoration(
                   hintText: 'Content',
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 3, color: Colors.black
+                      )
+                  ),
                 ),
                 maxLines: 4,
               ),
 
               const SizedBox(height: 16),
               ElevatedButton(
-                child: const Text('Add Todo'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.brown,
+                  foregroundColor: Colors.white,
+                  shadowColor: Colors.blueGrey,
+                  shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)
+                  ),
+                  elevation: 5,
+                ),
                 onPressed: () async {
-                  var result = await databaseConn.addTodo(Todo.withId(
+                  await databaseConn.addTodo(Todo.withId(
                     title: titleController.text,
                     content: contentController.text,
                   ));
                   Navigator.pop(context, true);
                   },
+                child: const Text('Add Todo'),
               ),
             ],
           ),

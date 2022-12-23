@@ -2,7 +2,7 @@ import 'package:assignment3/pages/details.dart';
 import 'package:assignment3/pages/form.dart';
 import 'package:flutter/material.dart';
 import 'model/db_model.dart';
-import 'model/model.dart';
+
 
 class Myhomepage extends StatefulWidget {
   const Myhomepage({super.key});
@@ -29,36 +29,36 @@ class _MyhomepageState extends State<Myhomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            leading: const Icon(Icons.list_alt_rounded),
-            title: const Text('Todo List')
-        ),
+      appBar: AppBar(
+          leading: const Icon(Icons.list_alt_rounded),
+          title: const Text('Todo List')
+      ),
 
-        body: ListView.builder(
-                itemCount: todoCount,
-                itemBuilder: (BuildContext context, int position) {
-                    return Card(
-                      color: Colors.deepPurpleAccent,
-                      elevation: 2.0,
-                      child: ListTile(
-                          title: Text(todos[position].title,
-                            style: const TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 20,
-                            color: Colors.white),
-                             ),
-                             onTap: () {
-                               goToDetail(todos[position]);
-                              },
-                              subtitle: Text(
-                                todos[position].content,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 15, color: Colors.white),
-                            ),
-                      ),
-                    );
-                }),
+      body: ListView.builder(
+          itemCount: todoCount,
+          itemBuilder: (BuildContext context, int position) {
+            return Card(
+              color: Colors.brown[100],
+              elevation: 2.0,
+              child: ListTile(
+                title: Text(todos[position].title,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.black),
+                ),
+                onTap: () {
+                  goToDetail(todos[position]);
+                },
+                subtitle: Text(
+                  todos[position].content,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15, color: Colors.black),
+                ),
+              ),
+            );
+          }),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -72,7 +72,8 @@ class _MyhomepageState extends State<Myhomepage> {
                 todoCount = data.length;
               });
             });
-          }},
+          }
+        },
         child: const Icon(Icons.add),
       ),
     );
@@ -87,7 +88,6 @@ class _MyhomepageState extends State<Myhomepage> {
       });
     });
   }
-}
 
   void goToDetail(todo) async {
     bool result = await Navigator.push(context,
@@ -96,3 +96,4 @@ class _MyhomepageState extends State<Myhomepage> {
       getTodo();
     }
   }
+}

@@ -5,7 +5,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(primarySwatch: Colors.deepPurple),
+    theme: ThemeData(primarySwatch: Colors.brown),
     title: 'MyApp',
     home: const Myhomepage(),
   ));

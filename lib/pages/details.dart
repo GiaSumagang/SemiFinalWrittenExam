@@ -47,7 +47,7 @@ class _DetailsState extends State {
           decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
+            topLeft: Radius.circular(30),
             topRight: Radius.circular(20),
           ),
         ),
@@ -56,32 +56,35 @@ class _DetailsState extends State {
 
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-          FloatingActionButton(
-            backgroundColor: Colors.indigo[200],
-            onPressed: () async {
-              await databaseConn.update(Todo.withId(
-                  id: todo.id,
-                  title: title.text,
-                  content: content.text)
-              );
-              Navigator.pop(context, true);
-            },
-            child: const Icon(Icons.edit),
-          ),
-            FloatingActionButton(
-              backgroundColor: Colors.deepOrange[900],
-              onPressed: () async {
-                await databaseConn.delete(todo.id);
-                Navigator.pop(context, true);
-                },
-              child: const Icon(Icons.delete),
-            ),
-          ]
-        ),
-    );
+            children: [
+              FloatingActionButton(
+                backgroundColor: Colors.blueGrey[700],
+                splashColor: Colors.purpleAccent,
+                onPressed: () async {
+                    await databaseConn.update(Todo.withId(
+                        id: todo.id,
+                        title: title.text,
+                        content: content.text)
+                    );
+                    Navigator.pop(context, true);
+                    },
+                  child: const Icon(Icons.edit),
+                ),
 
+                FloatingActionButton(
+                  backgroundColor: Colors.deepOrange[900],
+                  splashColor: Colors.purpleAccent,
+                  onPressed: () async {
+                    await databaseConn.delete(todo.id);
+                    Navigator.pop(context, true);
+                    },
+                  child: const Icon(Icons.delete_outline),
+                ),
+            ]
+        )
+    );
   }
+
     Widget buildTodoDetail() {
       return Padding(
         padding: const EdgeInsets.all(20.0),
@@ -95,20 +98,39 @@ class _DetailsState extends State {
     }
 
     Widget buildTitle() {
-      return TextField(
-        decoration: const InputDecoration(
-          labelText: "Title: ",
+      return Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: TextField(
+          decoration: const InputDecoration(
+            labelText: "Title",
+            hintText: "Enter Title",
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 3, color: Colors.black
+              )
+            ),
+          ),
+          controller: title,
         ),
-        controller: title,
       );
     }
 
     Widget buildBody() {
-      return TextField(
-        decoration: const InputDecoration(
-          labelText: "Description: ",
+      return Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: TextField(
+          decoration: const InputDecoration(
+            labelText: "Description",
+            hintText: "Enter Description",
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  width: 3, color: Colors.black
+              ),
+            ),
+          ),
+          maxLines: 4,
+          controller: content,
         ),
-        controller: content,
       );
     }
   }
